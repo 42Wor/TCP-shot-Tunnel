@@ -8,15 +8,28 @@ usage() {
   echo "Usage: $TOOL_NAME <command> [options]"
   echo ""
   echo "Commands:"
-  echo "  install   Install the $TOOL_NAME command-line tool."
-  echo "  <port>    Run the tst service, using <port> for TCP connection."
-  echo "  help      Show this help message."
+  echo "  install"
+  echo "      Install the $TOOL_NAME command-line tool onto your system."
+  echo "      This allows you to run the 'tst' command from any directory"
+  echo "      in your terminal, not just the script's folder."
+  echo "      It sets up the 'tst' command so it's easily accessible."
+  echo ""
+  echo "  <port>"
+  echo "      Run the $TOOL_NAME service, specifying the TCP port for backend connection."
+  echo "      Replace '<port>' with a TCP port number (like 9999). This port"
+  echo "      is used for 'tst' to connect to your separate TCP server."
+  echo "      The 'tst' service will then listen for HTTP requests and forward"
+  echo "      them to your TCP server through the specified port."
+  echo ""
+  echo "  help"
+  echo "      Show this helpful message.  Displays information about how to"
+  echo "      use the '$TOOL_NAME' command, including available commands"
+  echo "      and examples to get you started."
   echo ""
   echo "Example:"
-  echo "  $TOOL_NAME install"
-  echo "  $TOOL_NAME 9999"
+  echo "  $TOOL_NAME install   # Install the 'tst' command"
+  echo "  $TOOL_NAME 9999      # Run 'tst' service using TCP port 9999"
 }
-
 install_tool() {
   if ! command -v python3 &> /dev/null; then
     echo "Error: Python 3 is required but not found in PATH."
@@ -31,9 +44,9 @@ install_tool() {
   fi
 
   echo "Installing $TOOL_NAME to $INSTALL_DIR..."
-  sudo cp "$PYTHON_SCRIPT" "$INSTALL_DIR/$TOOL_NAME"
+  sudo cp "$0" "$INSTALL_DIR/$TOOL_NAME"  # Corrected line: copy the bash script ($0)
   if [ $? -ne 0 ]; then
-    echo "Error: Failed to copy '$PYTHON_SCRIPT' to '$INSTALL_DIR/$TOOL_NAME'."
+    echo "Error: Failed to copy '$0' to '$INSTALL_DIR/$TOOL_NAME'."
     echo "Please run the install command with sudo if necessary."
     return 1
   fi
@@ -78,7 +91,7 @@ case "$1" in
   install)
     install_tool
     ;;
-  help)
+  help)  # Add this case for "help"
     usage
     ;;
   "")

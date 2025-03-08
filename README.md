@@ -36,3 +36,7 @@ chmod +x tst.py
 chmod +x tst
 ./tst install
 tst 9999
+
+
+chmod +x tst
+./tst install
