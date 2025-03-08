@@ -1,42 +1,54 @@
 # TCP-shot-Tunnel
 tst command-line tool
 
+# tst-cli (or your chosen repository name)
 
+**tst-cli** is a command-line tool that acts as an HTTP to TCP forwarder. It receives HTTP requests and forwards them to a backend TCP server.
 
-Step 3: Make Scripts Executable
+## Features
 
-In your terminal, navigate to the directory where you saved tst.py and tst, and run the following commands:
+*   Simple command-line interface.
+*   Forwards HTTP requests to a specified TCP port.
+*   Provides basic status and error output in color (optional).
 
-chmod +x tst.py
-chmod +x tst
-Use code with caution.
-Bash
-This makes both the Python script and the Bash script executable.
+## Installation
 
-Step 4: Install the tst Tool
+**Prerequisites:**
 
-In the same directory, run the install command:
+*   Python 3 must be installed on your system.
+*   `curl` (or a similar HTTP client) is useful for testing the HTTP service.
 
-./tst install
-Use code with caution.
-Bash
-You will likely be prompted for your sudo password because the installation script tries to copy the tst.py script to /usr/local/bin.
+**Installation Steps:**
 
-Step 5: Run the tst Tool
+1.  **Download the `tst` script and `tst.py` files:**
+    You can download these files directly from this GitHub repository.
 
-After successful installation, you should be able to run tst from anywhere in your terminal. Try running it with a port number:
+2.  **Make the `tst` script executable:**
+    Open your terminal and navigate to the directory where you saved `tst` and `tst.py`.
+    Run the command:
+    ```bash
+    chmod +x tst
+    chmod +x tst.py
+    ```
 
-tst 9999
-Use code with caution.
-Bash
-This should start the Python script, and you'll see the logging output as it attempts to connect to a TCP server on port 9999 and starts the HTTP server on port 8000.
+3.  **Run the install command:**
+    Execute the following command from the same directory to install `tst` system-wide:
+    ```bash
+    ./tst install
+    ```
+    You might be prompted for your password as this command installs `tst` to `/usr/local/bin`.
 
+    Alternatively, if you want to install it locally (without `sudo`) you can copy `tst` and `tst.py` to a directory in your `$PATH`, like `~/bin`, and ensure `~/bin` is in your `PATH` environment variable.
 
-chmod +x tst.py
-chmod +x tst
-./tst install
-tst 9999
+## Usage
 
+**Basic Command:**
 
-chmod +x tst
-./tst install
+```bash
+tst <TCP_PORT>
+```
+
+**Create the Zip File:**
+```bash
+zip tst-tool.zip tst tst.py
+```
