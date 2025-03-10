@@ -5,6 +5,7 @@ import socketserver
 import socket
 import json
 import sys
+import signal
 
 # ANSI escape codes for colors
 COLOR_RESET = '\033[0m'
@@ -109,7 +110,7 @@ class MyHandler(http.server.BaseHTTPRequestHandler):
 
 def serve_forever_with_shutdown(server_address, handler_class):
     with socketserver.TCPServer(server_address, handler_class) as httpd:
-        import signal
+        
         def signal_handler(signum, frame):
             colored_print("Shutting down HTTP server...", COLOR_YELLOW)
             handler_class.server_close(httpd) # Use the class method for shutdown
